@@ -6,14 +6,16 @@ public abstract class Enemigo {
     private int salud;
     private int ataque;
     private int defensa;
+    private boolean alive;
 
     public abstract void morirse();
 
-    public Enemigo(String nombre, int salud, int ataque, int defensa) {
+    public Enemigo(String nombre, int salud, int ataque, int defensa, boolean alive) {
         this.nombre = nombre;
         this.salud = salud;
         this.ataque = ataque;
         this.defensa = defensa;
+        this.alive = alive;
     }
 
     public String getNombre() {
@@ -46,5 +48,13 @@ public abstract class Enemigo {
 
     public void setDefensa(int defensa) {
         this.defensa = defensa;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }

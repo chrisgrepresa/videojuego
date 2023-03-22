@@ -7,13 +7,15 @@ public abstract class Personaje {
     private int salud;
     private int ataque;
     private int defensa;
+    private boolean alive;
 
-    public Personaje(String nombre, int nivel, int salud, int ataque, int defensa) {
+    public Personaje(String nombre, int nivel, int salud, int ataque, int defensa, boolean alive) {
         this.nombre = nombre;
         this.nivel = nivel;
         this.salud = salud;
         this.ataque = ataque;
         this.defensa = defensa;
+        this.alive = alive;
     }
 
     public abstract void morirse();
@@ -56,5 +58,13 @@ public abstract class Personaje {
 
     public void setDefensa(int defensa) {
         this.defensa = defensa;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }
