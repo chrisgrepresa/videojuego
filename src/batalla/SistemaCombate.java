@@ -20,10 +20,11 @@ public class SistemaCombate {
         boolean personajeAtaca = false;
         boolean enemigoAtaca = false;
 
+
         while (faltanAtaques == true) {
             if (personajeAtaca == false) {
-                int tiradaUno = random.nextInt(1, 10);
-                int resultadoUno = (personaje.getAtaque() + tiradaUno) - (enemigo.getDefensa() - tiradaUno);
+                int damageOne = random.nextInt(1, 10);
+                int resultadoUno = (personaje.getAtaque() + damageOne) - (enemigo.getDefensa() - damageOne);
                 if (resultadoUno > 0) {
                     enemigo.setSalud(enemigo.getSalud() - resultadoUno);
                 }
@@ -31,8 +32,8 @@ public class SistemaCombate {
             }
 
             if (enemigoAtaca == false) {
-                int tiradaDos = random.nextInt(1, 10);
-                int resultadoDos = (enemigo.getAtaque() + tiradaDos) - (personaje.getDefensa() - tiradaDos);
+                int damageTwo = random.nextInt(1, 10);
+                int resultadoDos = (enemigo.getAtaque() + damageTwo) - (personaje.getDefensa() - damageTwo);
                 if (resultadoDos > 0) {
                     personaje.setSalud(personaje.getSalud() - resultadoDos);
 
@@ -48,8 +49,8 @@ public class SistemaCombate {
     }
 
     public void huir(Personaje personaje){
-        int tiradaTres = random.nextInt(1, 10);
-        if(tiradaTres>=8){
+        int diceScape = random.nextInt(1, 10);
+        if(diceScape>=8){
             System.out.println("Escapas del combate");
         }
         else {
