@@ -4,13 +4,9 @@ public class Picaro extends Personaje {
 
     private int agilidad;
 
-    public Picaro(String nombre, int nivel, int salud, int ataque, int defensa, int agilidad) {
-        super(nombre, nivel, salud, ataque, defensa);
+    public Picaro(String nombre, int nivel, int salud, int ataque, int defensa, boolean alive, int agilidad) {
+        super(nombre, nivel, salud, ataque, defensa, alive);
         this.agilidad = agilidad;
-    }
-
-    @Override
-    public void morirse() {
     }
 
     public void esquivar() {

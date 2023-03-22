@@ -8,7 +8,10 @@ public abstract class Enemigo {
     private int defensa;
     private boolean alive;
 
-    public abstract void morirse();
+    public void morirse(){
+        System.out.println("El enemigo " + getNombre() + " ha muerto");
+        setAlive(false);
+    }
 
     public Enemigo(String nombre, int salud, int ataque, int defensa, boolean alive) {
         this.nombre = nombre;

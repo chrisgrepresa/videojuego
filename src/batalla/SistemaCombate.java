@@ -9,38 +9,39 @@ import java.util.Random;
 
 public class SistemaCombate {
 
-    List<Personaje> personaje = new ArrayList<>();
-    List<Enemigo> enemigo = new ArrayList<>();
-
     Random random = new Random();
-
 
     public void atacar(Personaje personaje, Enemigo enemigo) {
 
         boolean combateTerminado = true;
-        boolean personajeAtaca = false;
-        boolean enemigoAtaca = false;
-
 
         while (!combateTerminado) {
             int damageByCharacter = random.nextInt(1, 10);
             int defenseByEnemy = random.nextInt(1, 10);
+            System.out.println("El héroe ataca");
             int resultadoPersonaje = (personaje.getAtaque() + damageByCharacter) - (enemigo.getDefensa() - defenseByEnemy);
             if (resultadoPersonaje > 0) {
+                System.out.println("El heroe hace este daño: " + resultadoPersonaje);
                 enemigo.setSalud(enemigo.getSalud() - resultadoPersonaje);
                 if(enemigo.getSalud()<=0){
                     enemigo.setAlive(false);
                 }
+            } else {
+                System.out.println("El héroe no ha hecho daño");
             }
             if (enemigo.getSalud() > 0) {
                 int damageByEnemy = random.nextInt(1, 10);
                 int defenseByCharacter = random.nextInt(1, 10);
+                System.out.println("El enemigo ataca");
                 int resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() - defenseByCharacter);
                 if (resultadoEnemigo > 0) {
+                    System.out.println("El enemigo hace este daño: " + resultadoEnemigo);
                     personaje.setSalud(personaje.getSalud() - resultadoEnemigo);
                     if(personaje.getSalud()<=0){
                         personaje.setAlive(false);
                     }
+                } else {
+                    System.out.println("El enemigo no ha hecho daño");
                 }
             }
             if (!personaje.isAlive() || !enemigo.isAlive()) {

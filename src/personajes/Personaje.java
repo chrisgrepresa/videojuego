@@ -18,7 +18,10 @@ public abstract class Personaje {
         this.alive = alive;
     }
 
-    public abstract void morirse();
+    public void morirse(){
+        System.out.println("El heroe " + getNombre() + " ha muerto");
+        setAlive(false);
+    }
 
     public String getNombre() {
         return nombre;

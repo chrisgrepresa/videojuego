@@ -4,13 +4,9 @@ public class Guerrero extends Personaje {
 
     private int armadura;
 
-    public Guerrero(String nombre, int nivel, int salud, int ataque, int defensa, int armadura) {
-        super(nombre, nivel, salud, ataque, defensa);
+    public Guerrero(String nombre, int nivel, int salud, int ataque, int defensa, boolean alive, int armadura) {
+        super(nombre, nivel, salud, ataque, defensa, alive);
         this.armadura = armadura;
-    }
-
-    @Override
-    public void morirse() {
     }
 
     private void gritoDeGuerra(){
