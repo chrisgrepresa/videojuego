@@ -28,6 +28,9 @@ public class SistemaCombate {
             int resultadoPersonaje = (personaje.getAtaque() + damageByCharacter) - (enemigo.getDefensa() - defenseByEnemy);
             if (resultadoPersonaje > 0) {
                 enemigo.setSalud(enemigo.getSalud() - resultadoPersonaje);
+                if(enemigo.getSalud()<=0){
+                    enemigo.setAlive(false);
+                }
             }
             if (enemigo.getSalud() > 0) {
                 int damageByEnemy = random.nextInt(1, 10);
@@ -35,10 +38,12 @@ public class SistemaCombate {
                 int resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() - defenseByCharacter);
                 if (resultadoEnemigo > 0) {
                     personaje.setSalud(personaje.getSalud() - resultadoEnemigo);
-
+                    if(personaje.getSalud()<=0){
+                        personaje.setAlive(false);
+                    }
                 }
             }
-            if (personaje.getSalud() <= 0 || enemigo.getSalud() <= 0) {
+            if (!personaje.isAlive() || !enemigo.isAlive()) {
                 combateTerminado = true;
             }
         }
