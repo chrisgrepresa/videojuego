@@ -1,7 +1,6 @@
 import batalla.SistemaCombate;
 import enemigos.Ogro;
 import personajes.Guerrero;
-import personajes.Personaje;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +9,7 @@ public class Main {
         Ogro ogro = new Ogro("Onisan", 40, 10, 5,true,7);
 
         SistemaCombate sistemaCombate = new SistemaCombate();
-        sistemaCombate.atacar(guerrero,ogro);
+        sistemaCombate.comenzarBatalla(guerrero,ogro);
 
     }
 }
