@@ -13,9 +13,9 @@ public class SistemaCombate {
 
     public void atacar(Personaje personaje, Enemigo enemigo) {
 
-        boolean combateTerminado = true;
+        boolean inCombat = true;
 
-        while (!combateTerminado) {
+        while (inCombat) {
             int damageByCharacter = random.nextInt(1, 10);
             int defenseByEnemy = random.nextInt(1, 10);
             System.out.println("El héroe ataca");
@@ -24,7 +24,7 @@ public class SistemaCombate {
                 System.out.println("El heroe hace este daño: " + resultadoPersonaje);
                 enemigo.setSalud(enemigo.getSalud() - resultadoPersonaje);
                 if(enemigo.getSalud()<=0){
-                    enemigo.setAlive(false);
+                    enemigo.morirse();
                 }
             } else {
                 System.out.println("El héroe no ha hecho daño");
@@ -38,14 +38,14 @@ public class SistemaCombate {
                     System.out.println("El enemigo hace este daño: " + resultadoEnemigo);
                     personaje.setSalud(personaje.getSalud() - resultadoEnemigo);
                     if(personaje.getSalud()<=0){
-                        personaje.setAlive(false);
+                        personaje.morirse();
                     }
                 } else {
                     System.out.println("El enemigo no ha hecho daño");
                 }
             }
             if (!personaje.isAlive() || !enemigo.isAlive()) {
-                combateTerminado = true;
+                inCombat = false;
             }
         }
         System.out.println("Se acabó el combate");
