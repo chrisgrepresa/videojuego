@@ -4,12 +4,41 @@ import enemigos.Enemigo;
 import personajes.Personaje;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class SistemaCombate {
 
     Random random = new Random();
+    Scanner scanner = new Scanner(System.in);
 
-    public void comenzarBatalla(Personaje personaje, Enemigo enemigo) {
+    public void realizarAccionPersonaje(Personaje personaje, Enemigo enemigo) {
+        boolean inCombat = true;
+        while (inCombat) {
+            System.out.println("¿Qué quieres hacer? a) Atacar | b) Huir");
+            String eleccion = scanner.nextLine();
+            if(eleccion.equalsIgnoreCase("a")){
+                System.out.println("¡Que comience el combate!");
+                realizarTurnoPersonaje(personaje,enemigo);
+                realizarTurnoEnemigo(personaje, enemigo);
+                inCombat = checkAlive(personaje, enemigo, inCombat);
+            } else if (eleccion.equalsIgnoreCase("b")) {
+                int diceScape = random.nextInt(1, 10);
+                if (diceScape >= 8) {
+                    System.out.println("Escapas del combate");
+                    inCombat = false;
+                }
+                else {
+                    System.out.println("No has podido huir, a seguir peleando");
+                }
+            }
+            else {
+                System.out.println("Respuesta incorrecta, escoge una opción A o B");
+            }
+        }
+        System.out.println("Se acabó el combate");
+    }
+
+    /*public void comenzarBatalla(Personaje personaje, Enemigo enemigo) {
         boolean inCombat = true;
         while (inCombat) {
             realizarTurnoPersonaje(personaje,enemigo);
@@ -17,16 +46,18 @@ public class SistemaCombate {
             inCombat = checkAlive(personaje, enemigo, inCombat);
         }
         System.out.println("Se acabó el combate");
-    }
+    }*/
 
-    public void huir(Personaje personaje) {
+
+    /*public void huir(Personaje personaje) {
         int diceScape = random.nextInt(1, 10);
         if (diceScape >= 8) {
             System.out.println("Escapas del combate");
-        } else {
-            System.out.println("¡Que comience el combate!");
         }
-    }
+        else {
+            System.out.println("No has podido huir, a seguir peleando");
+        }
+    }*/
 
     public void realizarTurnoPersonaje(Personaje personaje,Enemigo enemigo){
         int damageByCharacter = random.nextInt(1, 10);//Esto tb se puede refactorizar de 31-35: calcular daño

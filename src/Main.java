@@ -9,7 +9,7 @@ public class Main {
         Ogro ogro = new Ogro("Onisan", 40, 10, 5,true,7);
 
         SistemaCombate sistemaCombate = new SistemaCombate();
-        sistemaCombate.comenzarBatalla(guerrero,ogro);
+        sistemaCombate.realizarAccionPersonaje(guerrero,ogro);
 
     }
 }
