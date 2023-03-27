@@ -20,20 +20,21 @@ public class SistemaCombate {
                 System.out.println("¡Que comience el combate!");
                 realizarTurnoPersonaje(personaje,enemigo);
                 realizarTurnoEnemigo(personaje, enemigo);
-                inCombat = checkAlive(personaje, enemigo, inCombat);
+                //inCombat = checkAlive(personaje, enemigo, inCombat);
             } else if (eleccion.equalsIgnoreCase("b")) {
-                int diceScape = random.nextInt(1, 10);
-                if (diceScape >= 8) {
-                    System.out.println("Escapas del combate");
-                    inCombat = false;
-                }
-                else {
-                    System.out.println("No has podido huir, a seguir peleando");
+               inCombat = huir(personaje);
+               // Cuando llegue a esta línea va a ver si huyó y asignar el valor de true o false
+                // (lo que devuelve el método huir) a variable in Combat
+                //Después de intentar huir: comprobación. Si aún inCombat = true, el enemigo ataca.
+                if(inCombat == true){
+                    realizarTurnoEnemigo(personaje,enemigo);
                 }
             }
             else {
                 System.out.println("Respuesta incorrecta, escoge una opción A o B");
             }
+            //Comprobar si siguen vivos para ver si se sigue el combate
+            inCombat = checkAlive(personaje, enemigo,inCombat);
         }
         System.out.println("Se acabó el combate");
     }
@@ -49,15 +50,18 @@ public class SistemaCombate {
     }*/
 
 
-    /*public void huir(Personaje personaje) {
+    public boolean huir(Personaje personaje) {
         int diceScape = random.nextInt(1, 10);
         if (diceScape >= 8) {
             System.out.println("Escapas del combate");
+            return false;
         }
         else {
             System.out.println("No has podido huir, a seguir peleando");
+            return true;
         }
-    }*/
+
+    }
 
     public void realizarTurnoPersonaje(Personaje personaje,Enemigo enemigo){
         int damageByCharacter = random.nextInt(1, 10);//Esto tb se puede refactorizar de 31-35: calcular daño
