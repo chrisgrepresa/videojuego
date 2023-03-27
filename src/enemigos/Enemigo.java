@@ -13,6 +13,11 @@ public abstract class Enemigo {
         setAlive(false);
     }
 
+    public void huir(){
+        System.out.println("El enemigo " + getNombre() + " ha huido");
+        setAlive(false);
+    }
+
     public Enemigo(String nombre, int salud, int ataque, int defensa, boolean alive) {
         this.nombre = nombre;
         this.salud = salud;
