@@ -82,7 +82,7 @@ public class SistemaCombate {
     private static int calculateEnemyDamage(Personaje personaje, Enemigo enemigo, int damageByEnemy, int defenseByCharacter, int resultadoEnemigo) {
         if (personaje instanceof Picaro) {
             if (((Picaro) personaje).esquivar()) {
-                //esquiva
+                resultadoEnemigo = 0;
             } else {
                 resultadoEnemigo = calculateAttackPointsEnemy(enemigo, damageByEnemy) - calculateDefensePointsCharacter(personaje, defenseByCharacter);
             }

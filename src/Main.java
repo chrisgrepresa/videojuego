@@ -9,7 +9,7 @@ public class Main {
 
         Guerrero guerrero = new Guerrero("Aragorn", 40,100,5,5,true,30);
         Ogro ogro = new Ogro("Onisan", 40, 10, 5,true,7);
-        Picaro picaro = new Picaro("Pepe",4,100,6,7,true,50);
+        Picaro picaro = new Picaro("Pepe",4,100,6,7,true,10);
 
         SistemaDeAcciones sistemaDeAcciones = new SistemaDeAcciones();
         sistemaDeAcciones.doCombatRound(picaro,ogro);
