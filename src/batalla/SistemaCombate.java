@@ -1,8 +1,10 @@
 package batalla;
 
 import enemigos.Enemigo;
+import enemigos.Ogro;
 import personajes.Guerrero;
 import personajes.Personaje;
+import personajes.Picaro;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -64,6 +66,9 @@ public class SistemaCombate {
                 resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) -
                         (personaje.getDefensa() + defenseByCharacter + ((Guerrero) personaje).getArmadura());
             }
+            if (enemigo instanceof Ogro){
+                resultadoEnemigo = (enemigo.getAtaque() + ((Ogro) enemigo).getFuerza() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
+            }
             else{
                 resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
             }
@@ -75,6 +80,15 @@ public class SistemaCombate {
                 }
             } else {
                 System.out.println("El enemigo no ha hecho daño");
+            }
+            if (personaje instanceof Picaro){
+                int dexterityPosibility = random.nextInt(1,100);
+                if(dexterityPosibility <= ((Picaro) personaje).getAgilidad()){
+                    System.out.println("El pícaro esquiva el ataque");
+                }
+                else {
+                    System.out.println("No lo has esquivado, te ha dado en toda la jeta.");
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ public class Picaro extends Personaje {
 
     public Picaro(String nombre, int nivel, int salud, int ataque, int defensa, boolean alive, int agilidad) {
         super(nombre, nivel, salud, ataque, defensa, alive);
-        this.agilidad = agilidad;
+        this.agilidad = Math.min(agilidad, 50);
     }
 
     public void esquivar() {
