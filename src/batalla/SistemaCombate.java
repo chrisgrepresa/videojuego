@@ -62,9 +62,6 @@ public class SistemaCombate {
             System.out.println("El enemigo ataca");
             int resultadoEnemigo = 0;
             resultadoEnemigo = calculateEnemyDamage(personaje, enemigo, damageByEnemy, defenseByCharacter, resultadoEnemigo);
-            /*if (enemigo instanceof Ogro){
-                resultadoEnemigo = (enemigo.getAtaque() + ((Ogro) enemigo).getFuerza() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
-            }*/
             applyEnemyDamage(personaje, resultadoEnemigo);
 
         }
@@ -83,19 +80,41 @@ public class SistemaCombate {
     }
 
     private static int calculateEnemyDamage(Personaje personaje, Enemigo enemigo, int damageByEnemy, int defenseByCharacter, int resultadoEnemigo) {
-        if (personaje instanceof Guerrero) {
-            resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) -
-                    (personaje.getDefensa() + defenseByCharacter + ((Guerrero) personaje).getArmadura());
-        } else if (personaje instanceof Picaro) {
+        if (personaje instanceof Picaro) {
             if (((Picaro) personaje).esquivar()) {
                 //esquiva
             } else {
-                resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
+                resultadoEnemigo = calculateAttackPointsEnemy(enemigo, damageByEnemy) - calculateDefensePointsCharacter(personaje, defenseByCharacter);
             }
         } else {
-            resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
+            resultadoEnemigo = calculateAttackPointsEnemy(enemigo, damageByEnemy) - calculateDefensePointsCharacter(personaje, defenseByCharacter);
         }
         return resultadoEnemigo;
+    }
+
+    private static int calculateDefensePointsCharacter(Personaje personaje, int defenseByCharacter) {
+        if(personaje instanceof Guerrero){
+            return (personaje.getDefensa() + defenseByCharacter + ((Guerrero) personaje).getArmadura());
+        }
+        else {
+            return personaje.getDefensa() + defenseByCharacter;
+        }
+    }
+
+    private static int calculateAttackPointsEnemy(Enemigo enemigo, int damageByEnemy) {
+        if(enemigo instanceof Ogro){
+            Random random = new Random();
+            int probabilidadAtaqueNormalOAplastar = random.nextInt(1,100);
+            if(probabilidadAtaqueNormalOAplastar <= 50){
+                return enemigo.getAtaque() + ((Ogro) enemigo).getFuerza() + damageByEnemy;
+            }
+            else{
+                return ((Ogro)enemigo).aplastar();
+            }
+        }
+        else {
+            return enemigo.getAtaque() + damageByEnemy;
+        }
     }
 
     public static boolean checkAlive(Personaje personaje, Enemigo enemigo, boolean inCombat) {
