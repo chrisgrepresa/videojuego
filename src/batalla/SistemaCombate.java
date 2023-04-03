@@ -32,15 +32,14 @@ public class SistemaCombate {
         if (diceScape >= 8) {
             System.out.println("Escapas del combate");
             return false;
-        }
-        else {
+        } else {
             System.out.println("No has podido huir, a seguir peleando");
             return true;
         }
 
     }
 
-    public void realizarTurnoPersonaje(Personaje personaje,Enemigo enemigo){
+    public void realizarTurnoPersonaje(Personaje personaje, Enemigo enemigo) {
         int damageByCharacter = random.nextInt(1, 10);//Esto tb se puede refactorizar de 31-35: calcular daño
         int defenseByEnemy = random.nextInt(1, 10);
         System.out.println("El héroe ataca");
@@ -48,7 +47,7 @@ public class SistemaCombate {
         if (resultadoPersonaje > 0) {
             System.out.println("El heroe hace este daño: " + resultadoPersonaje);
             enemigo.setSalud(enemigo.getSalud() - resultadoPersonaje);
-            if(enemigo.getSalud()<=0){
+            if (enemigo.getSalud() <= 0) {
                 enemigo.morirse();
             }
         } else {
@@ -61,37 +60,44 @@ public class SistemaCombate {
             int damageByEnemy = random.nextInt(1, 10);
             int defenseByCharacter = random.nextInt(1, 10);
             System.out.println("El enemigo ataca");
-            int resultadoEnemigo =0;
-            if(personaje instanceof Guerrero){
-                resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) -
-                        (personaje.getDefensa() + defenseByCharacter + ((Guerrero) personaje).getArmadura());
-            }
-            if (enemigo instanceof Ogro){
+            int resultadoEnemigo = 0;
+            resultadoEnemigo = calculateEnemyDamage(personaje, enemigo, damageByEnemy, defenseByCharacter, resultadoEnemigo);
+            /*if (enemigo instanceof Ogro){
                 resultadoEnemigo = (enemigo.getAtaque() + ((Ogro) enemigo).getFuerza() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
-            }
-            else{
-                resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
-            }
-            if (resultadoEnemigo > 0) {
-                System.out.println("El enemigo hace este daño: " + resultadoEnemigo);
-                personaje.setSalud(personaje.getSalud() - resultadoEnemigo);
-                if(personaje.getSalud()<=0){
-                    personaje.morirse();
-                }
-            } else {
-                System.out.println("El enemigo no ha hecho daño");
-            }
-            if (personaje instanceof Picaro){
-                int dexterityPosibility = random.nextInt(1,100);
-                if(dexterityPosibility <= ((Picaro) personaje).getAgilidad()){
-                    System.out.println("El pícaro esquiva el ataque");
-                }
-                else {
-                    System.out.println("No lo has esquivado, te ha dado en toda la jeta.");
-                }
-            }
+            }*/
+            applyEnemyDamage(personaje, resultadoEnemigo);
+
         }
     }
+
+    private static void applyEnemyDamage(Personaje personaje, int resultadoEnemigo) {
+        if (resultadoEnemigo > 0) {
+            System.out.println("El enemigo hace este daño: " + resultadoEnemigo);
+            personaje.setSalud(personaje.getSalud() - resultadoEnemigo);
+            if (personaje.getSalud() <= 0) {
+                personaje.morirse();
+            }
+        } else {
+            System.out.println("El enemigo no ha hecho daño");
+        }
+    }
+
+    private static int calculateEnemyDamage(Personaje personaje, Enemigo enemigo, int damageByEnemy, int defenseByCharacter, int resultadoEnemigo) {
+        if (personaje instanceof Guerrero) {
+            resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) -
+                    (personaje.getDefensa() + defenseByCharacter + ((Guerrero) personaje).getArmadura());
+        } else if (personaje instanceof Picaro) {
+            if (((Picaro) personaje).esquivar()) {
+                //esquiva
+            } else {
+                resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
+            }
+        } else {
+            resultadoEnemigo = (enemigo.getAtaque() + damageByEnemy) - (personaje.getDefensa() + defenseByCharacter);
+        }
+        return resultadoEnemigo;
+    }
+
     public static boolean checkAlive(Personaje personaje, Enemigo enemigo, boolean inCombat) {
         if (!personaje.isAlive() || !enemigo.isAlive()) {
             inCombat = false;
