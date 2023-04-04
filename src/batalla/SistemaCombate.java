@@ -4,6 +4,7 @@ import enemigos.Enemigo;
 import enemigos.Goblin;
 import enemigos.Ogro;
 import personajes.Guerrero;
+import personajes.Mago;
 import personajes.Personaje;
 import personajes.Picaro;
 
@@ -106,7 +107,13 @@ public class SistemaCombate {
             } else {
                 resultadoEnemigo = calculateAttackPointsEnemy(enemigo, damageByEnemy) - calculateDefensePointsCharacter(personaje, defenseByCharacter);
             }
-        } else {
+        }
+        else if(personaje instanceof Mago){
+            System.out.println("Como el mago es debilucho, recibe " + (personaje.getDefensa() + defenseByCharacter) +
+                    " pero le va a dañar 2 puntos más.");
+            return (personaje.getDefensa() + defenseByCharacter -2);
+        }
+        else {
             resultadoEnemigo = calculateAttackPointsEnemy(enemigo, damageByEnemy) - calculateDefensePointsCharacter(personaje, defenseByCharacter);
         }
         return resultadoEnemigo;

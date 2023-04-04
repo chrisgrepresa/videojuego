@@ -1,6 +1,7 @@
 package batalla;
 import enemigos.Enemigo;
 import personajes.Guerrero;
+import personajes.Mago;
 import personajes.Personaje;
 import java.util.Scanner;
 
@@ -14,6 +15,9 @@ public class SistemaDeAcciones {
         while (inCombat) {
             if (personaje instanceof Guerrero){
                 warriorActions(personaje,enemigo,inCombat);
+            }
+            else if (personaje instanceof Mago){
+                wizardActions (personaje, enemigo, inCombat);
             }
             else {
                 inCombat = genericActions(personaje, enemigo, inCombat);
@@ -67,6 +71,32 @@ public class SistemaDeAcciones {
         }
         else if(eleccion.equalsIgnoreCase("c")){
             inCombat = ((Guerrero)personaje).gritoDeGuerra(enemigo);
+            if(inCombat == true){
+                sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
+            }
+        }
+        else {
+            System.out.println("Respuesta incorrecta, escoge una opción A o B");
+        }
+        return inCombat;
+    }
+
+    public boolean wizardActions(Personaje personaje, Enemigo enemigo, boolean inCombat){
+        System.out.println("¿Qué quieres hacer? a) Atacar | b) Huir | c) Lanzar Hechizo");
+        String eleccion = scanner.nextLine();
+        if(eleccion.equalsIgnoreCase("a")){
+            System.out.println("¡Que comience el combate!");
+            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo);
+            sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
+            //inCombat = checkAlive(personaje, enemigo, inCombat);
+        } else if (eleccion.equalsIgnoreCase("b")) {
+            inCombat = sistemaCombate.huir(personaje);
+            if(inCombat == true){
+                sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
+            }
+        }
+        else if(eleccion.equalsIgnoreCase("c")){
+            inCombat = ((Mago)personaje).lanzarHechizo(enemigo);
             if(inCombat == true){
                 sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
             }
