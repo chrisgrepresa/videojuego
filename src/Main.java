@@ -1,5 +1,6 @@
 import batalla.SistemaCombate;
 import batalla.SistemaDeAcciones;
+import enemigos.Goblin;
 import enemigos.Ogro;
 import personajes.Guerrero;
 import personajes.Picaro;
@@ -10,9 +11,10 @@ public class Main {
         Guerrero guerrero = new Guerrero("Aragorn", 40,100,5,5,true,30);
         Ogro ogro = new Ogro("Onisan", 40, 10, 5,true,7);
         Picaro picaro = new Picaro("Pepe",4,100,6,7,true,10);
+        Goblin goblin = new Goblin("Ñehehé", 40,8,6,true,25);
 
         SistemaDeAcciones sistemaDeAcciones = new SistemaDeAcciones();
-        sistemaDeAcciones.doCombatRound(picaro,ogro);
+        sistemaDeAcciones.doCombatRound(picaro,goblin);
 
 
     }

@@ -40,10 +40,14 @@ public class SistemaCombate {
     }
 
     public void realizarTurnoPersonaje(Personaje personaje, Enemigo enemigo) {
-        int damageByCharacter = random.nextInt(1, 10);//Esto tb se puede refactorizar de 31-35: calcular daño
+        int damageByCharacter = random.nextInt(1, 10);
         int defenseByEnemy = random.nextInt(1, 10);
         System.out.println("El héroe ataca");
         int resultadoPersonaje = (personaje.getAtaque() + damageByCharacter) - (enemigo.getDefensa() + defenseByEnemy);
+        applyCharacterDamage(enemigo, resultadoPersonaje);
+    }
+
+    private static void applyCharacterDamage(Enemigo enemigo, int resultadoPersonaje) {
         if (resultadoPersonaje > 0) {
             System.out.println("El heroe hace este daño: " + resultadoPersonaje);
             enemigo.setSalud(enemigo.getSalud() - resultadoPersonaje);
