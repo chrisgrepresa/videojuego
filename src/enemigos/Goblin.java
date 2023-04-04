@@ -19,7 +19,7 @@ public class Goblin extends Enemigo{
             return true;
         }
         else {
-            System.out.println("El goblín no esquiva el ataque y se lo come con patatas");
+            System.out.println("El goblin no esquiva el ataque y se lo come con patatas");
             return false;
         }
     }

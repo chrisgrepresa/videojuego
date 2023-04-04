@@ -1,6 +1,7 @@
 package batalla;
 
 import enemigos.Enemigo;
+import enemigos.Goblin;
 import enemigos.Ogro;
 import personajes.Guerrero;
 import personajes.Personaje;
@@ -43,8 +44,23 @@ public class SistemaCombate {
         int damageByCharacter = random.nextInt(1, 10);
         int defenseByEnemy = random.nextInt(1, 10);
         System.out.println("El héroe ataca");
-        int resultadoPersonaje = (personaje.getAtaque() + damageByCharacter) - (enemigo.getDefensa() + defenseByEnemy);
+        int resultadoPersonaje= 0; 
+        resultadoPersonaje = calculateCharacterDamage(personaje, enemigo, damageByCharacter, defenseByEnemy);
         applyCharacterDamage(enemigo, resultadoPersonaje);
+    }
+
+    private static int calculateCharacterDamage(Personaje personaje, Enemigo enemigo, int damageByCharacter, int defenseByEnemy) {
+        int resultadoPersonaje;
+        if (enemigo instanceof Goblin) {
+            if (((Goblin) enemigo).esquivar()) {
+                resultadoPersonaje = 0;
+            } else {
+                resultadoPersonaje = (personaje.getAtaque() + damageByCharacter) - (enemigo.getDefensa() + defenseByEnemy);
+            }
+        } else {
+            resultadoPersonaje = (personaje.getAtaque() + damageByCharacter) - (enemigo.getDefensa() + defenseByEnemy);
+        }
+        return resultadoPersonaje; 
     }
 
     private static void applyCharacterDamage(Enemigo enemigo, int resultadoPersonaje) {
