@@ -33,7 +33,7 @@ public class SistemaDeAcciones {
         String eleccion = scanner.nextLine();
         if(eleccion.equalsIgnoreCase("a")){
             System.out.println("¡Que comience el combate!");
-            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo);
+            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo, false);
             sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
             //inCombat = checkAlive(personaje, enemigo, inCombat);
         } else if (eleccion.equalsIgnoreCase("b")) {
@@ -57,7 +57,7 @@ public class SistemaDeAcciones {
         String eleccion = scanner.nextLine();
         if(eleccion.equalsIgnoreCase("a")){
             System.out.println("¡Que comience el combate!");
-            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo);
+            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo, false);
             sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
             //inCombat = checkAlive(personaje, enemigo, inCombat);
         } else if (eleccion.equalsIgnoreCase("b")) {
@@ -86,7 +86,7 @@ public class SistemaDeAcciones {
         String eleccion = scanner.nextLine();
         if(eleccion.equalsIgnoreCase("a")){
             System.out.println("¡Que comience el combate!");
-            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo);
+            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo, false);
             sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
             //inCombat = checkAlive(personaje, enemigo, inCombat);
         } else if (eleccion.equalsIgnoreCase("b")) {
@@ -96,7 +96,8 @@ public class SistemaDeAcciones {
             }
         }
         else if(eleccion.equalsIgnoreCase("c")){
-            inCombat = ((Mago)personaje).lanzarHechizo(enemigo);
+            sistemaCombate.realizarTurnoPersonaje(personaje, enemigo, true);
+            sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
             if(inCombat == true){
                 sistemaCombate.realizarTurnoEnemigo(personaje, enemigo);
             }

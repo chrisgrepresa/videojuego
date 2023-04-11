@@ -41,13 +41,20 @@ public class SistemaCombate {
 
     }
 
-    public void realizarTurnoPersonaje(Personaje personaje, Enemigo enemigo) {
+    public void realizarTurnoPersonaje(Personaje personaje, Enemigo enemigo, boolean spell) {
         int damageByCharacter = random.nextInt(1, 10);
         int defenseByEnemy = random.nextInt(1, 10);
-        System.out.println("El héroe ataca");
-        int resultadoPersonaje= 0; 
-        resultadoPersonaje = calculateCharacterDamage(personaje, enemigo, damageByCharacter, defenseByEnemy);
-        applyCharacterDamage(enemigo, resultadoPersonaje);
+        if(!spell){
+            System.out.println("El héroe ataca");
+            int resultadoPersonaje= 0;
+            resultadoPersonaje = calculateCharacterDamage(personaje, enemigo, damageByCharacter, defenseByEnemy);
+            applyCharacterDamage(enemigo, resultadoPersonaje);
+        }
+        else {
+            int spellDamage = ((Mago)personaje).lanzarHechizo();
+            int resultadoPersonaje = calculateCharacterDamage(personaje, enemigo, spellDamage, defenseByEnemy);
+            applyCharacterDamage(enemigo, resultadoPersonaje);
+        }
     }
 
     private static int calculateCharacterDamage(Personaje personaje, Enemigo enemigo, int damageByCharacter, int defenseByEnemy) {
@@ -92,6 +99,11 @@ public class SistemaCombate {
         if (resultadoEnemigo > 0) {
             System.out.println("El enemigo hace este daño: " + resultadoEnemigo);
             personaje.setSalud(personaje.getSalud() - resultadoEnemigo);
+            if(personaje instanceof Mago){
+                System.out.println("Como el mago es debilucho, recibe " + resultadoEnemigo+
+                        " pero le va a dañar 2 puntos más.");
+                personaje.setSalud(personaje.getSalud() - resultadoEnemigo -2);
+            }
             if (personaje.getSalud() <= 0) {
                 personaje.morirse();
             }
@@ -107,11 +119,6 @@ public class SistemaCombate {
             } else {
                 resultadoEnemigo = calculateAttackPointsEnemy(enemigo, damageByEnemy) - calculateDefensePointsCharacter(personaje, defenseByCharacter);
             }
-        }
-        else if(personaje instanceof Mago){
-            System.out.println("Como el mago es debilucho, recibe " + (personaje.getDefensa() + defenseByCharacter) +
-                    " pero le va a dañar 2 puntos más.");
-            return (personaje.getDefensa() + defenseByCharacter -2);
         }
         else {
             resultadoEnemigo = calculateAttackPointsEnemy(enemigo, damageByEnemy) - calculateDefensePointsCharacter(personaje, defenseByCharacter);
