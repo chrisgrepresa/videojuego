@@ -62,4 +62,9 @@ public class Mago extends Personaje {
     public void setPuntosDeMagia(int puntosDeMagia) {
         this.puntosDeMagia = puntosDeMagia;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " puntos de Magia: " + getPuntosDeMagia();
+    }
 }

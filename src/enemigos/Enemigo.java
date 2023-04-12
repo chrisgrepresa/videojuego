@@ -65,4 +65,16 @@ public abstract class Enemigo {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
+    @Override
+    public String toString() {
+        return "Enemigo{" +
+                "nombre='" + nombre + '\'' +
+                ", salud=" + salud +
+                ", ataque=" + ataque +
+                ", defensa=" + defensa +
+                ", alive=" + alive +
+                '}';
+    }
+
 }

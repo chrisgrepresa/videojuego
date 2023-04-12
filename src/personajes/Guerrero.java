@@ -36,5 +36,10 @@ public class Guerrero extends Personaje {
     public void setArmadura(int armadura) {
         this.armadura = armadura;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " armadura: " + getArmadura();
+    }
 }
 

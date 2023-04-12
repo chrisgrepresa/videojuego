@@ -23,13 +23,18 @@ public class Main {
         InterfazUsuario interfazUsuario = new InterfazUsuario();
         interfazUsuario.startGame();
 
-        //todo: CREAR MÉTODO CREATEMONSTER,
-        // bucleswhile en createCharacter, que no pueda poner otras letras y
-        // mensaje si se pasa con los valores que tienen un tope.
-        // todo: Excepciones.
-        // todo:Lo mismo con el monstruo.
+
         // Simular unos cuantos combates y cambiar los mensajes que salgan para que sea mejor para el usuario.
         // Ogro ogro = new Ogro("Onisan", 40, 10, 5, true, 7);
+
+        //todo: Arreglar creación del monstruo ---> HECHO
+        // imprimir por pantalla el monstruo (toString) ---> HECHO
+        // goblin le sale fuerza en lugar de agilidad, algo falla ---> HECHO
+
+        // todo: Control de excepciones
+        //  (numeros cuando letras, viceversa, espacio en numeros, signos en numeros)
+        // todo: quitar los niveles (cuidado que afecta a contructores.
+        // todo: que se pueda escoger letra o directamente escribir el tipo de personaje/enemigo
 
     }
 }

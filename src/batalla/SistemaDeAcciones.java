@@ -14,10 +14,10 @@ public class SistemaDeAcciones {
         boolean inCombat = true;
         while (inCombat) {
             if (personaje instanceof Guerrero){
-                warriorActions(personaje,enemigo,inCombat);
+                inCombat =  warriorActions(personaje,enemigo,inCombat);
             }
             else if (personaje instanceof Mago){
-                wizardActions (personaje, enemigo, inCombat);
+                inCombat = wizardActions (personaje, enemigo, inCombat);
             }
             else {
                 inCombat = genericActions(personaje, enemigo, inCombat);

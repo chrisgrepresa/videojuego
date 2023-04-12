@@ -31,4 +31,9 @@ public class Picaro extends Personaje {
     public void setAgilidad(int agilidad) {
         this.agilidad = agilidad;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " agilidad: " + getAgilidad();
+    }
 }

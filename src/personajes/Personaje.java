@@ -70,4 +70,16 @@ public abstract class Personaje {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
+    @Override
+    public String toString() {
+        return "Personaje{" +
+                "nombre='" + nombre + '\'' +
+                ", nivel=" + nivel +
+                ", salud=" + salud +
+                ", ataque=" + ataque +
+                ", defensa=" + defensa +
+                ", alive=" + alive +
+                '}';
+    }
 }

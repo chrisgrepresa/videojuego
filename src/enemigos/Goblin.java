@@ -31,4 +31,9 @@ public class Goblin extends Enemigo{
     public void setAgilidad(int agilidad) {
         this.agilidad = agilidad;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " nivel de agilidad: " + getAgilidad();
+    }
 }

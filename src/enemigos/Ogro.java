@@ -36,4 +36,9 @@ public class Ogro extends Enemigo{
     public void setFuerza(int fuerza) {
         this.fuerza = fuerza;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " nivel de fuerza: " + getFuerza();
+    }
 }
