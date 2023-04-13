@@ -30,11 +30,13 @@ public class Main {
         //todo: Arreglar creación del monstruo ---> HECHO
         // imprimir por pantalla el monstruo (toString) ---> HECHO
         // goblin le sale fuerza en lugar de agilidad, algo falla ---> HECHO
+        // todo: quitar los niveles (cuidado que afecta a contructores. ---> HECHO
+        // todo: que se pueda escoger letra o directamente escribir el tipo de personaje/enemigo---> HECHO
 
         // todo: Control de excepciones
         //  (numeros cuando letras, viceversa, espacio en numeros, signos en numeros)
-        // todo: quitar los niveles (cuidado que afecta a contructores.
-        // todo: que se pueda escoger letra o directamente escribir el tipo de personaje/enemigo
+
+
 
     }
 }

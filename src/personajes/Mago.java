@@ -9,8 +9,8 @@ public class Mago extends Personaje {
 
     private int puntosDeMagia;
 
-    public Mago(String nombre, int nivel, int salud, int ataque, int defensa, boolean alive, int puntosDeMagia) {
-        super(nombre, nivel, salud, ataque, defensa, alive);
+    public Mago(String nombre, int salud, int ataque, int defensa, boolean alive, int puntosDeMagia) {
+        super(nombre, salud, ataque, defensa, alive);
         this.puntosDeMagia = Math.min(puntosDeMagia, 10);
     }
 

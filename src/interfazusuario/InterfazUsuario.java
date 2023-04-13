@@ -28,7 +28,7 @@ public class InterfazUsuario {
     }
 
     private Personaje createCharacter() {
-        Personaje personaje = new Guerrero("Aragorn", 40, 100, 5, 5, true, 30);
+        Personaje personaje = new Guerrero("Aragorn", 100, 5, 5, true, 30);
 
         Scanner scanner = new Scanner(System.in);
         String choosenCharacter = selectCharacterType(scanner);
@@ -40,22 +40,25 @@ public class InterfazUsuario {
         boolean faltaRespuesta = true;
         String choosenCharacter = null;
 
-        while (faltaRespuesta == true) {
+        while (faltaRespuesta) {
             System.out.println("¿Qué tipo de personaje quieres crear?");
             System.out.println("a) Guerrero");
             System.out.println("b) Pícaro");
             System.out.println("c) Mago");
             choosenCharacter = scanner.nextLine();
             if (choosenCharacter.equalsIgnoreCase("a") || choosenCharacter.equalsIgnoreCase("b")
-                    || choosenCharacter.equalsIgnoreCase("c")) {
+                    || choosenCharacter.equalsIgnoreCase("c") || choosenCharacter.equalsIgnoreCase("guerrero")
+            || choosenCharacter.equalsIgnoreCase("picaro") || choosenCharacter.equalsIgnoreCase("pícaro")
+                    || choosenCharacter.equalsIgnoreCase("mago")) {
                 System.out.printf("De acuerdo, has escogido: ");
-                if (choosenCharacter.equalsIgnoreCase("a")) {
+                if (choosenCharacter.equalsIgnoreCase("a") || choosenCharacter.equalsIgnoreCase("guerrero")) {
                     System.out.println("a) Guerrero");
                 }
-                if (choosenCharacter.equalsIgnoreCase("b")) {
+                if (choosenCharacter.equalsIgnoreCase("b") || choosenCharacter.equalsIgnoreCase("pícaro")
+                 || choosenCharacter.equalsIgnoreCase("picaro")) {
                     System.out.println("b) Pícaro");
                 }
-                if (choosenCharacter.equalsIgnoreCase("c")) {
+                if (choosenCharacter.equalsIgnoreCase("c") || choosenCharacter.equalsIgnoreCase("mago")) {
                     System.out.println("c) Mago");
                 }
                 System.out.println("Vamos a conocer un poco más a tu personaje.");
@@ -122,7 +125,7 @@ public class InterfazUsuario {
     }
 
     private static Personaje aditionalLimitedPointsCharacter(Personaje personaje, Scanner scanner, String choosenCharacter) {
-        if (choosenCharacter.equalsIgnoreCase("a")) {
+        if (choosenCharacter.equalsIgnoreCase("a") || choosenCharacter.equalsIgnoreCase("guerrero")) {
             boolean faltanRespuestas = true;
             while (faltanRespuestas) {
                 System.out.println("Eres un guerrero. Elige tu nivel de armadura, de 1 a 10.");
@@ -133,10 +136,11 @@ public class InterfazUsuario {
                 } else {
                     System.out.println("Hemos dicho del 1 al 10, no te flipes. Repite");
                 }
-                personaje = new Guerrero(personaje.getNombre(), 0, personaje.getSalud(),
+                personaje = new Guerrero(personaje.getNombre(), personaje.getSalud(),
                         personaje.getAtaque(), personaje.getDefensa(), true, Integer.parseInt(armorLevelCharacter));
             }
-        } else if (choosenCharacter.equalsIgnoreCase("b")) {
+        } else if (choosenCharacter.equalsIgnoreCase("b") || choosenCharacter.equalsIgnoreCase("picaro")
+                || choosenCharacter.equalsIgnoreCase("pícaro")) {
             boolean faltanRespuestas = true;
             while (faltanRespuestas) {
                 System.out.println("Eres un pícaro. Elige tu nivel de agilidad, de 1 a 50");
@@ -148,11 +152,11 @@ public class InterfazUsuario {
 
                     System.out.println("Hemos dicho del 1 al 50, no te flipes. Repite");
                 }
-                personaje = new Picaro(personaje.getNombre(), 0, personaje.getSalud(),
+                personaje = new Picaro(personaje.getNombre(), personaje.getSalud(),
                         personaje.getAtaque(), personaje.getDefensa(), true, Integer.parseInt(dexterityLevelCharacter));
             }
 
-        } else if (choosenCharacter.equalsIgnoreCase("c")) {
+        } else if (choosenCharacter.equalsIgnoreCase("c") || choosenCharacter.equalsIgnoreCase("mago")) {
             boolean faltanRespuestas = true;
             while (faltanRespuestas) {
                 System.out.println("Eres un mago. Elige tu nivel de magia, de 1 a 10");
@@ -163,7 +167,7 @@ public class InterfazUsuario {
                 } else {
                     System.out.println("Hemos dicho del 1 al 10, no te flipes. Repite");
                 }
-                personaje = new Mago(personaje.getNombre(), 0, personaje.getSalud(),
+                personaje = new Mago(personaje.getNombre(), personaje.getSalud(),
                         personaje.getAtaque(), personaje.getDefensa(), true, Integer.parseInt(magicLevelCharacter));
             }
         }
@@ -188,13 +192,13 @@ public class InterfazUsuario {
             System.out.println("a) Ogro");
             System.out.println("b) Goblin");
             choosenEnemy = scanner.nextLine();
-            if (choosenEnemy.equalsIgnoreCase("a") || choosenEnemy.equalsIgnoreCase("b")
-                    || choosenEnemy.equalsIgnoreCase("c")) {
+            if (choosenEnemy.equalsIgnoreCase("a") || choosenEnemy.equalsIgnoreCase("b") ||
+            choosenEnemy.equalsIgnoreCase("ogro") || choosenEnemy.equalsIgnoreCase("goblin")) {
                 System.out.printf("De acuerdo, has escogido: ");
-                if (choosenEnemy.equalsIgnoreCase("a")) {
+                if (choosenEnemy.equalsIgnoreCase("a") || choosenEnemy.equalsIgnoreCase("ogro")) {
                     System.out.println("a) Ogro");
                 }
-                if (choosenEnemy.equalsIgnoreCase("b")) {
+                if (choosenEnemy.equalsIgnoreCase("b") || choosenEnemy.equalsIgnoreCase("goblin")) {
                     System.out.println("b) Goblin");
                 }
                 System.out.println("Vamos a conocer un poco más al enemigo.");
@@ -262,7 +266,7 @@ public class InterfazUsuario {
     }
 
     private static Enemigo additionalPointsEnemy(Enemigo enemigo, Scanner scanner, String choosenEnemy) {
-        if (choosenEnemy.equalsIgnoreCase("a")) {
+        if (choosenEnemy.equalsIgnoreCase("a") || choosenEnemy.equalsIgnoreCase("ogro")) {
             boolean faltanRespuestas = true;
             while (faltanRespuestas) {
                 System.out.println("El enemigo es un ogro. Elige su nivel de fuerza, de 1 a 10.");
@@ -276,10 +280,10 @@ public class InterfazUsuario {
                 enemigo = new Ogro(enemigo.getNombre(), enemigo.getSalud(), enemigo.getAtaque(),
                         enemigo.getDefensa(), true, Integer.parseInt(strengthLevelEnemy));
             }
-        } else if (choosenEnemy.equalsIgnoreCase("b")) {
+        } else if (choosenEnemy.equalsIgnoreCase("b")  || choosenEnemy.equalsIgnoreCase("goblin")) {
             boolean faltanRespuestas = true;
             while (faltanRespuestas) {
-                System.out.println("El enemigo es un goblin. Elige su nivel de fuerza, de 1 a 10.");
+                System.out.println("El enemigo es un goblin. Elige su nivel de agilidad, de 1 a 10.");
                 String dexterityLevelEnemy = scanner.nextLine();
                 if (Integer.parseInt(dexterityLevelEnemy) >= 1 && Integer.parseInt(dexterityLevelEnemy) <= 10) {
                     System.out.println("La agilidad es nivel " + dexterityLevelEnemy + " , estás preparado para luchar.");

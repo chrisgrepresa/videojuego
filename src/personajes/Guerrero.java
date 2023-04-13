@@ -8,8 +8,8 @@ public class Guerrero extends Personaje {
 
     private int armadura;
 
-    public Guerrero(String nombre, int nivel, int salud, int ataque, int defensa, boolean alive, int armadura) {
-        super(nombre, nivel, salud, ataque, defensa, alive);
+    public Guerrero(String nombre, int salud, int ataque, int defensa, boolean alive, int armadura) {
+        super(nombre, salud, ataque, defensa, alive);
 
         this.armadura = Math.min(armadura, 10); //Esto es un método que escoge el método más pequeño de las dos opciones
         // Se usa para que si alguien pone un valor mayor a 10, pone 10 por defecto.

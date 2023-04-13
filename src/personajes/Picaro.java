@@ -6,8 +6,8 @@ public class Picaro extends Personaje {
 
     private int agilidad;
 
-    public Picaro(String nombre, int nivel, int salud, int ataque, int defensa, boolean alive, int agilidad) {
-        super(nombre, nivel, salud, ataque, defensa, alive);
+    public Picaro(String nombre, int salud, int ataque, int defensa, boolean alive, int agilidad) {
+        super(nombre, salud, ataque, defensa, alive);
         this.agilidad = Math.min(agilidad, 50);
     }
 
