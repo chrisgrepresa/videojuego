@@ -35,6 +35,8 @@ public class Main {
 
         // todo: Control de excepciones
         //  (numeros cuando letras, viceversa, espacio en numeros, signos en numeros)
+        // cuando pones el nombre, no introducir números
+        // cuando pones el número, simbolo, espacio o letra
 
 
 
